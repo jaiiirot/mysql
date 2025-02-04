@@ -34,7 +34,7 @@ Este sistema busca centralizar y optimizar la gestión académica, facilitando e
 
 ## Diagrama Entidad Relacion & Tablas
 
-<!-- Agregar una imagen -->
+![Diagrama Entidad Relacion](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2Keg4fxLACO5CQ_pYYzia1q89UhEk8zit7YL0Q6EiIxxBXOLOqZWRzB9QvCwFHAHb5E_gJt3inJ2_IT8dUW092EHTaMWbbOHyqGacC4dqGQ_MUY6hqfX7Q3FX98wz9tFX5WznXHvf3tEr/s1600/8.gif)
 
 ## Tablas y su USo
 
