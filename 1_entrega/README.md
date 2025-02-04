@@ -7,6 +7,7 @@ Es una base de datos de una escuela secundaria tecnica, que tiene 6 años. La ba
 <!-- Agregar una imagen -->
 
 Cursos
-|tabla|concepto|tipo de dato|tipo de clave|
-|id|identificar cada curso con un caracter unico| INT | primaria|
-|año|año del curso que este cursando el estudiante| INT | N/A|
+|tabla |concepto                                        |tipo de dato|tipo de clave |
+|------|------------------------------------------------|------------|--------------|
+|id    |identificar cada curso con un caracter unico    | INT        | primaria     |
+|año   |año del curso que este cursando el estudiante   | INT        | N/A          |
