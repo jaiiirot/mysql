@@ -1,4 +1,9 @@
+-- CREACIÓN DE LA BASE DE DATOS
+DROP DATABASE IF EXISTS SecundariaTumiri;
+CREATE DATABASE SecundariaTumiri;
 USE SecundariaTumiri;
+
+-- TABLAS PRINCIPALES (ORIGINALES)
 
 -- Tabla TUTOR
 CREATE TABLE TUTOR (
@@ -72,6 +77,65 @@ CREATE TABLE CALIFICACION (
     fecha_evaluacion DATE NOT NULL,
     FOREIGN KEY (id_estudiante) REFERENCES ESTUDIANTE(id_estudiante),
     FOREIGN KEY (id_materia) REFERENCES MATERIA(id_materia),
+    FOREIGN KEY (id_profesor) REFERENCES PROFESOR(id_profesor),
+    FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)
+);
+
+-- Tabla de Hechos: ASISTENCIA
+CREATE TABLE ASISTENCIA (
+    id_asistencia INT PRIMARY KEY AUTO_INCREMENT,
+    id_estudiante INT NOT NULL,
+    id_curso INT NOT NULL,
+    fecha DATE NOT NULL,
+    presente BOOLEAN DEFAULT TRUE,
+    justificacion VARCHAR(200),
+    FOREIGN KEY (id_estudiante) REFERENCES ESTUDIANTE(id_estudiante),
+    FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso),
+    UNIQUE (id_estudiante, fecha)
+);
+
+-- Tabla Transaccional: INSCRIPCION
+CREATE TABLE INSCRIPCION (
+    id_inscripcion INT PRIMARY KEY AUTO_INCREMENT,
+    id_estudiante INT NOT NULL,
+    id_curso INT NOT NULL,
+    fecha_inscripcion DATE NOT NULL,
+    estado ENUM('Activo', 'Inactivo', 'Egresado') DEFAULT 'Activo',
+    FOREIGN KEY (id_estudiante) REFERENCES ESTUDIANTE(id_estudiante),
+    FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)
+);
+
+-- Tabla Transaccional: EXAMEN
+CREATE TABLE EXAMEN (
+    id_examen INT PRIMARY KEY AUTO_INCREMENT,
+    id_materia INT NOT NULL,
+    id_profesor INT NOT NULL,
+    fecha DATE NOT NULL,
+    tipo ENUM('Parcial', 'Recuperatorio', 'Final') NOT NULL,
+    descripcion VARCHAR(200),
+    FOREIGN KEY (id_materia) REFERENCES MATERIA(id_materia),
+    FOREIGN KEY (id_profesor) REFERENCES PROFESOR(id_profesor)
+);
+
+-- Tabla de EVENTOS
+CREATE TABLE EVENTO (
+    id_evento INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE,
+    id_curso INT,
+    FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)
+);
+
+-- Tabla de COMUNICADOS
+CREATE TABLE COMUNICADO (
+    id_comunicado INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha_publicacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_profesor INT,
+    id_curso INT,
     FOREIGN KEY (id_profesor) REFERENCES PROFESOR(id_profesor),
     FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)
 );
